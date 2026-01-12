@@ -33,6 +33,9 @@ class Cards
     #[ORM\OneToMany(targetEntity: CommandDetails::class, mappedBy: 'cards')]
     private Collection $commandDetails;
 
+    #[ORM\Column(length: 255)]
+    private ?string $name = null;
+
     public function __construct()
     {
         $this->commandDetails = new ArrayCollection();
@@ -117,6 +120,18 @@ class Cards
                 $commandDetail->setCards(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): static
+    {
+        $this->name = $name;
 
         return $this;
     }
