@@ -1,0 +1,32 @@
+<header>
+	<div id="ltu">
+		<div id="logoh1">
+		<img src="{{asset('assets/imguti/logo.png')}}" alt="logo" id="logo">
+		<h1>BugsKnight</h1>
+		</div>
+
+		<div id="coninsc">
+			{% if app.user %}
+				<a href="{{path('app_logout')}}">Log out</a>
+
+			{% else %}
+				<a href="{{path('app_register')}}">Sign in</a>
+
+				<a href="{{path('app_login')}}">Log in</a>
+
+			{% endif %}
+		</div>
+	</div>
+	<nav>
+		<a href="{{path('app_home')}}">
+			<button>home</button>
+		</a>
+		<a href="{{path('app_product')}}">
+			<button>product</button>
+		</a>
+		<a href="{{path('app_cart')}}">
+			<button>cart</button>
+		</a>
+
+	</nav>
+</header>
