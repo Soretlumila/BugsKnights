@@ -1,14 +1,24 @@
+{% if app.request.attributes.get('_route') == 'app_home' %}
+<div style="
+background: linear-gradient(275deg,rgb(167, 163, 163) 37%, rgba(255, 0, 30, 1) 100%); padding-top: 20px; height: 100vh;  ">
+
+{% elseif app.request.attributes.get('_route') == 'app_product' %}
+<div style="background-color:green">
+{% endif %}
 <header>
 	<div id="ltu">
 		<div id="logo">
-		<img src="{{asset('assets/imguti/logo.png')}}" alt="logo" id="logo">
+			<img src="{{asset('assets/imguti/logo.png')}}" alt="logo" id="logo">
 		</div>
 		<h1>BugsKnight</h1>
 
 		<div id="coninsc">
 			{% if app.user %}
-				<a href="{{path('app_logout')}}">Log out</a>
-
+				{% if is_granted('ROLE_ADMIN') %}
+					<a href="{{path('admin')}}">Admin</a>
+				{% endif %}
+				<a href="{{path('app_inventory')}}">Inventory</a>
+				<a href="{{path('app_logout')}}" id="logout">Log out</a>
 			{% else %}
 				<a href="{{path('app_register')}}">Sign in</a>
 
@@ -19,13 +29,13 @@
 	</div>
 	<nav>
 		<a href="{{path('app_home')}}">
-			<button>home</button>
+			<button>Home</button>
 		</a>
 		<a href="{{path('app_product')}}">
-			<button>product</button>
+			<button>Product</button>
 		</a>
 		<a href="{{path('app_cart')}}">
-			<button>cart</button>
+			<button>Cart</button>
 		</a>
 
 	</nav>
