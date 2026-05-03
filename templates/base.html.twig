@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>
+			{% block title %}Welcome!
+			{% endblock %}
+		</title>
+		<link rel="icon" href="{{asset('assets/imguti/logo.png')}}">
+		{% block stylesheets %}
+			<link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
+		{% endblock %}
+
+		{% block javascripts %}
+			{% block importmap %}
+				{{ importmap('app') }}
+			{% endblock %}
+		{% endblock %}
+	</head>
+	<body>
+		{% include "_partials/_header.html.twig" %}
+		{% block body %}{% endblock %}
+		{% include "_partials/_footer.html.twig" %}
+	</body>
+</html>

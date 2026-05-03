@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello InfoplusController!{% endblock %}
+
+{% block body %}
+<div id="containerinfos">
+    <section id="quiSN">
+        <h2>Who are we</h2>
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi
+            facilis asperiores atque voluptatum incidunt aut sunt commodi?
+            Beatae deleniti explicabo culpa esse, tenetur nulla numquam, eaque
+            pariatur unde, in perspiciatis? Numquam, accusantium error, maiores
+            perferendis repellat deleniti magnam nemo incidunt ab ipsam sint
+            nostrum at, voluptatibus excepturi ut sit expedita!
+        </p>
+    </section>
+    <section id="socials">
+        <div><a href="">Instagram</a></div>
+        <div><a href="">Twitter</a></div>
+        <div><a href="">Tik Touk</a></div>
+    </section>
+    <section id="mention">
+        <h2>See our Legal Notice below</h2>
+        <a href="{{ asset('assets/imguti/Vosmentionslégales.pdf') }}" target="_blank">
+    here
+</a>
+
+    </section>
+</div>
+
+{% endblock %}

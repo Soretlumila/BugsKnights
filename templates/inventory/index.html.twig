@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inventory
+{% endblock %}
+
+{% block body %}
+
+	<h1 class="textinventory">My Inventory</h1>
+
+	{% if inventories is empty %}
+		<p class="textinventory">You don't have any card at this time</p>
+		<a href="{{ path('app_product') }}">See product here</a>
+
+	{% else %}
+		<p class="textinventory">You have
+			<strong>{{ inventories|length }}</strong>
+			card(s).</p>
+
+		<div class="cards">
+			{% for inventory in inventories %}
+				{% set card = inventory.cards %}
+				<a href="{{ path('app_detailsproduct', {id: card.id}) }}" class="card" data-game="{{ card.game }}">
+
+					<img src="{{ card.picture starts with 'http' ? card.picture : asset('assets/img/' ~ card.picture) }}" alt="{{ card.name }}">
+
+					<div class="card-bottom">
+						<div class="card-info">
+							<span class="card-area">{{ card.areas }}</span>
+							<span class="card-price">{{ card.price }}
+								€</span>
+						</div>
+					</div>
+
+				</a>
+			{% endfor %}
+		</div>
+	{% endif %}
+	<h2 class="textinventory">
+		Cards not purchased ({{ notOwnedCards|length }})</h2>
+
+	{% if notOwnedCards is empty %}
+		<p class="textinventory">LESGO YOU GOT ALL THE CARDS, thanks for the money
+		</p>
+	{% else %}
+		<div class="cards">
+			{% for card in notOwnedCards %}
+				<a href="{{ path('app_detailsproduct', {id: card.id}) }}" class="card card-not-owned" data-game="{{ card.game }}">
+					<img src="{{ card.picture starts with 'http' ? card.picture : asset('assets/img/' ~ card.picture) }}" alt="{{ card.name }}">
+					<div class="card-bottom">
+						<div class="card-info">
+							<span class="card-area">{{ card.areas }}</span>
+							<span class="card-price">{{ card.price }}
+								€</span>
+						</div>
+					</div>
+				</a>
+			{% endfor %}
+		</div>
+	{% endif %}
+
+
+{% endblock %}

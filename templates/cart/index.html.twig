@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cart
+{% endblock %}
+
+{% block body %}
+	<div id="cartbody">
+
+		<h1>My Cart</h1>
+
+		{% if items is empty %}
+			<p id="cartempty">Cart empty</p>
+		{% else %}
+			{% for item in items %}
+				<div>
+					<img src="{{asset('assets/img/' ~ item.card.picture) }}" alt="{{ item.card.name }}" width="100"> 
+					<h2>{{ item.card.name }}</h2> 
+					<p>Game: <br>
+						{{ item.card.game }}</p>
+					<p>Area: <br>
+						{{ item.card.areas }}</p>
+					<p>Price: <br>
+						{{ item.card.price }}
+						€</p>
+					<p>Quantity: <br>
+						{{ item.quantity }}</p>
+					<p>Price: <br>
+						{{ item.subtotal }}
+						€</p>
+					<a href="{{ path('cart_remove', { id: item.card.id }) }}">
+						delete the card
+					</a>
+				</div>
+			{% endfor %}
+			<h2>Total :
+				{{ total }}
+				€</h2>
+			<div id="cart-action">
+			<a href="{{ path('cart_clear') }}">empty the cart</a>
+			<a href="{{ path('cart_confirm') }}">confirm the cart</a>
+			</div>
+
+		{% endif %}
+	</div>
+{% endblock %}

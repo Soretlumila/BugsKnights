@@ -1,0 +1,69 @@
+<div id="modaldetailprodgame">
+	<img src="">
+	<button id="btnstopblock">X</button>
+</div>
+{% if app.request.attributes.get('_route') == 'app_home' %}
+    <div class="bg-home">
+
+{% elseif app.request.attributes.get('_route') in ['app_register', 'app_login'] %}
+    <div class="bg-auth">
+
+{% elseif app.request.attributes.get('_route') in ['app_product', 'app_detailsproduct'] %}
+    <div class="productcontainer bg-product">
+
+{% elseif app.request.attributes.get('_route') == 'app_inventory' %}
+    <div class="inventorycontainer bg-inventory">
+
+{% elseif app.request.attributes.get('_route') == 'app_cart' %}
+    <div class="cartcontainer bg-cart">
+
+{% endif %}
+							<header>
+								<div id="ltu">
+									<div id="logo">
+										<img src="{{asset('assets/imguti/logo.png')}}" alt="logo" id="logo">
+										<h1>BugsKnight</h1>
+									</div>
+									<div id="menuburger">
+										<ul>
+											<a href="{{path('app_home')}}">
+												<li>HOME</li>
+											</a>
+											<a href="{{path('app_product')}}">
+												<li>PRODUCT</li>
+											</a>
+											<a href="{{path('app_inventory')}}">
+												<li>INVENTORY</li>
+											</a>
+										</ul>
+									</div>
+									<button id="menuburgerbtn" onclick="toggleMenu()">
+										<span></span>
+										<span></span>
+										<span></span>
+									</button>
+									<div id="coninsc">
+										{% if app.user %}
+											{% if is_granted('ROLE_ADMIN') %}
+												<a href="{{path('admin')}}">Admin</a>
+											{% endif %}
+											<a href="{{path('app_cart')}}">Cart</a>
+											<a href="{{path('app_logout')}}" id="logout">Log out</a>
+										{% else %}
+											<a href="{{path('app_register')}}">Sign in</a>
+											<a href="{{path('app_login')}}">Log in</a>
+										{% endif %}
+									</div>
+								</div>
+								<nav>
+									<a href="{{path('app_home')}}">
+										<button>HOME</button>
+									</a>
+									<a href="{{path('app_product')}}">
+										<button>PRODUCT</button>
+									</a>
+									<a href="{{path('app_inventory')}}">
+										<button>INVENTORY</button>
+									</a>
+								</nav>
+							</header>

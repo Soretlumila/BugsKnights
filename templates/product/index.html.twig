@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ProductController!
+{% endblock %}
+
+{% block body %}
+	<div class="sucess">
+		<p id="mess" style="color: lightgreen ;"></p>
+	</div>
+	<div id="bloctitrefiltre">
+		<h1 id="titreprod">Cards filters
+		</h1>
+
+		<div class="filters">
+			<button data-game="all">All</button>
+			<button data-game="Silksong">Silksong</button>
+			<button data-game="Hollow_Knight">Hollow Knight</button>
+		</div>
+	</div>
+	<div class="cards">
+		{% for card in cards %}
+			<a href="{{ path('app_detailsproduct', {id: card.id}) }}" class="card" data-game="{{ card.game }}">
+				<img src="{{ card.picture starts with 'http' ? card.picture : asset('assets/img/' ~ card.picture) }}" alt="{{ card.name }}">
+				<div class="card-bottom">
+				<button class="add-to-cart" "{{path('cart_add',{id: card.id})}}" onclick="event.stopPropagation(); event.preventDefault()" >
+						<img style="height: 50px;"  src="{{ asset('assets/imguti/cart.png') }}">
+					</button>
+					<div class="card-info">
+						<span class="card-area">{{ card.areas }}</span>
+						<span class="card-price">{{ card.price }}
+							€</span>
+					</div>
+					
+				</div>
+			</a>
+		{% endfor %}
+	</div>
+{% endblock %}

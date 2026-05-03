@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}detailcards
+{% endblock %}
+
+{% block body %}
+	<div class="detail-container">
+
+		<div class="detail-left">
+			<img src="{{ card.picture starts with 'http' ? card.picture : asset('assets/img/' ~ card.picture) }}" alt="{{ card.name }}" class="detail-card-img">
+		</div>
+
+		<div class="detail-right">
+			<div class="detail-game-img">
+				{% if card.game == 'hollow_knight' %}
+					<img  src="{{ asset('assets/imguti/hkmap.webp') }}" alt="Hollow Knight">
+				{% elseif card.game == 'silksong' %}
+					<img src="{{ asset('assets/imguti/ssmap.jpg') }}" alt="Silksong">
+				{% endif %}
+	
+			</div>
+
+			<div class="detail-info">
+				<div class="detail-info-left">
+					<span class="detail-game">{{ card.game == 'hollow_knight' ? 'Hollow Knight' : 'Silksong' }}</span>
+					<span class="detail-area">{{ card.areas }}</span>
+				</div>
+				<div class="detail-info-center">
+					<span class="detail-price">{{ card.price }}
+						€</span>
+				</div>
+				<a href="{{path('cart_add',{id: card.id})}}" >
+				 <button class="add-to-cart-detailprod">
+                    <div id="addcartdprod">
+					<img style="height : 50px ;" src="{{asset('assets/imguti/cart.png')}}">
+					</div>
+                </button></a>
+			</div>
+		</div>
+
+	</div>
+{% endblock %}
